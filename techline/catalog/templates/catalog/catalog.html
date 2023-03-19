@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+
+{{ title }}
+
+{% block content %}
+<h1>Здесь будет каталог товаров</h1>
+
+
+
+<div class="container">
+    <div class="row row-cols-3">
+        {% for good in goods %}
+        <div class="col">
+            <h4>{{ good.title }}</h4>
+            <img src='media/photos/2023/03/13/1.jpeg' alt="Телевизор Xiaomi">
+            </p>{{ good.photo }}
+            {{ good.content }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+
