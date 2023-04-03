@@ -11,10 +11,13 @@
     <div class="row row-cols-3">
         {% for good in goods %}
         <div class="col">
+            {% if good.images %}
+                <p><img class="img-article-left thumb" src="{{ good.photo }}"></p>
+            {% endif %}
             <h4>{{ good.title }}</h4>
-            <img src='media/photos/2023/03/13/1.jpeg' alt="Телевизор Xiaomi">
             </p>{{ good.photo }}
             {{ good.content }}
+            <p class="link-read-post"><a href="{{ good.get_absolute_url }}">Подробнее</a></p>
         </div>
         {% endfor %}
     </div>
