@@ -5,12 +5,14 @@ from django.urls import reverse
 class Goods(models.Model):
     title = models.CharField(max_length=50, verbose_name='Название')
     content = models.TextField(blank=True)
-    photo = models.ImageField(upload_to='images/%Y/%m/%d/', verbose_name="Фото")
+    photo = models.ImageField(upload_to='images/%Y/%m/%d/', verbose_name='Фото')
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
     is_published = models.BooleanField(default=True, verbose_name='Публикация')
+    balance = models.IntegerField(verbose_name='Остаток', default=0)
+    price = models.FloatField(verbose_name='Цена', default=0)
 
-    cat = models.ForeignKey('Good_category', on_delete=models.PROTECT, null=True)
+    category = models.ForeignKey('Good_category', on_delete=models.PROTECT, verbose_name='Категория', null=True)
 
     def __str__(self):
         return self.title
@@ -25,7 +27,7 @@ class Goods(models.Model):
 
 
 class Good_category(models.Model):
-    name = models.CharField(max_length=100, db_index=True, verbose_name="Название")
+    name = models.CharField(max_length=100, db_index=True, verbose_name="Название категории")
 
     def __str__(self):
         return self.name

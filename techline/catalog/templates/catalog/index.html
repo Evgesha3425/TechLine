@@ -3,6 +3,14 @@
 {{ title }}
 
 {% block content %}
-Это главная страница сайта
-
+<div class="container">
+    <div class="row row-cols-3">
+        {% for cat in categories %}
+        <div class="col">
+            <h4>{{ cat.name }}</h4>
+            <p class="link-read-post"><a href="{{ cat.get_absolute_url }}">Смотреть все</a></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

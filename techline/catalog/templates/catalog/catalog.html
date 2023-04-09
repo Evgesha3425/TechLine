@@ -3,19 +3,16 @@
 {{ title }}
 
 {% block content %}
-<h1>Здесь будет каталог товаров</h1>
-
 
 
 <div class="container">
     <div class="row row-cols-3">
         {% for good in goods %}
         <div class="col">
-            {% if good.images %}
-                <p><img class="img-article-left thumb" src="{{ good.photo }}"></p>
+            {% if good.photo %}
+                <p><img class="img-article-left thumb" src="{{ good.photo.url }}"></p>
             {% endif %}
             <h4>{{ good.title }}</h4>
-            </p>{{ good.photo }}
             {{ good.content }}
             <p class="link-read-post"><a href="{{ good.get_absolute_url }}">Подробнее</a></p>
         </div>

@@ -3,16 +3,17 @@ from django.http import HttpResponse, Http404
 
 from .models import Goods, Good_category
 
-# menu = ['Главная страница', 'Каталог']
+menu = ['Главная страница', 'Каталог', 'Новости', 'Личный кабинет']
 
 
 def index(request):
-    cats = Good_category.objects.all()
+    categories = Good_category.objects.all()
+    goods = Goods.objects.all()
 
     context = {
         'title': 'Главная страница',
-        'cats': cats,
-        'category_selected': 0,
+        'categories': categories,
+        'goods': goods,
     }
 
     return render(request, 'catalog/index.html', context=context)
@@ -42,5 +43,9 @@ def show_category(request, cat_id):
     return render(request, 'catalog/index.html', context=context)
 
 
-def for_test(request):
-    return render(request, 'catalog/for_test.html', {'title': 'Для теста'})
+def account(request):
+    return render(request, 'catalog/account.html', {'title': 'Личный кабинет'})
+
+
+def news(request):
+    return render(request, 'catalog/news.html', {'title': 'Новости'})
