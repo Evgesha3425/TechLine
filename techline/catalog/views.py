@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 
 from .models import Goods, Good_category
@@ -28,19 +28,16 @@ def show_good(request, good_id):
     return HttpResponse(f'Отображение товара с id = {good_id}')
 
 
-def show_category(request, cat_id):
-    cats = Good_category.objects.filter(id=cat_id)
-
-    if len(cats) == 0:
-        raise Http404()
+def show_category(request, category_id):
+    category = get_object_or_404(Goods, pk=category_id)
 
     context = {
-        'title': 'Отображение по категориям',
-        'cats': cats,
-        'cat_selected': cat_id,
+        'title': category.name,
+        'category': category,
+        'cat_selected': category.category_id,
     }
 
-    return render(request, 'catalog/index.html', context=context)
+    return render(request, 'catalog/categories.html', context=context)
 
 
 def account(request):

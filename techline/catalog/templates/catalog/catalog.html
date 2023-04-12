@@ -9,10 +9,10 @@
     <div class="row row-cols-3">
         {% for good in goods %}
         <div class="col">
+            <h4>{{ good.title }}</h4>
             {% if good.photo %}
                 <p><img class="img-article-left thumb" src="{{ good.photo.url }}"></p>
             {% endif %}
-            <h4>{{ good.title }}</h4>
             {{ good.content }}
             <p class="link-read-post"><a href="{{ good.get_absolute_url }}">Подробнее</a></p>
         </div>

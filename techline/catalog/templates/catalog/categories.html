@@ -1,0 +1,19 @@
+{% extends 'catalog/base.html' %}
+{{ title }}
+
+{% block content %}
+<div class="container">
+    <div class="row row-cols-3">
+        <div class="col">
+        {% for cat in categories %}
+            {% if cat.id == 1 %}
+                <p><img width="150" src= {% static "catalog/images/categories/TV.jpg" %}></p>
+            {% elif cat.id == 2 %}
+                <p><img width="150" src= {% static "catalog/images/categories/laptop.jpg" %}></p>
+            {% endif %}
+            <h4>{{ cat.name }}</h4><a href="{{ cat.get_absolute_url }}">Смотреть все</a>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
